@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Form from "./components/Form";
+import {connect} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function App({name, names, addSplice}) {
+    return (
+        <div>
+            <Form
+                names={names}
+                name={name}
+                addSplice={addSplice}
+            />
+        </div>
+    );
 }
 
-export default App;
+const mapStateToProps = state => ({
+    name: state.name,
+    names: state.names,
+    addSplice: state.addSplice
+
+})
+
+export default connect(mapStateToProps)(App);

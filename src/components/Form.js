@@ -7,10 +7,7 @@ import {connect} from "react-redux";
 
 const Form = ({name}) => {
 
-   /* const names = new Array()
-        .fill('')
-        .map((_, i) => ({id: i, title: `${name}`}))
-    console.log('nn',names)*/
+
 
     return (
         <div>

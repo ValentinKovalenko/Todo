@@ -1,15 +1,15 @@
-import './App.css';
+import './App.scss';
 import Form from "./components/Form";
 import {connect} from "react-redux";
 
 
-function App({name, names, addSplice}) {
+function App({name, names, deleteName}) {
     return (
         <div>
             <Form
                 names={names}
                 name={name}
-                addSplice={addSplice}
+                deleteName={deleteName}
             />
         </div>
     );
@@ -18,7 +18,7 @@ function App({name, names, addSplice}) {
 const mapStateToProps = state => ({
     name: state.name,
     names: state.names,
-    addSplice: state.addSplice
+    deleteName: state.deleteName
 
 })
 

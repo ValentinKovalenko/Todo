@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Grid, List, ListItem, ListItemText, Typography} from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {connect} from "react-redux";
@@ -7,17 +7,21 @@ import {nameDel} from "../action/customers";
 
 export const Notes = ({names, name}) => {
 
+
     return (
         <List
             style={{marginLeft: 10}}
         >
-            {names.map(name => (
+            {names.map((item, index) => (
                 <ListItemText
-                    key={name.id}
+                    key={index}
                     className='note'
                 >
-                    {name.title}
-                    <Button onClick={nameDel}>
+                    {item.name}
+                    <Button
+                    className='note1'
+                        onClick={()=>nameDel(index)}
+                    >
                         <DeleteIcon
                             color="secondary"
                             type='button'
@@ -31,9 +35,7 @@ export const Notes = ({names, name}) => {
 const mapStateToProps = state => ({
     name: state.name,
     names: state.names,
-    addSplice: state.addSplice
-
-
+    deleteName: state.deleteName
 })
 
 export default connect(mapStateToProps)(Notes);

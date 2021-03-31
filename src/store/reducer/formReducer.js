@@ -1,13 +1,13 @@
 export const actionType = {
     SET_NAME: 'SET_NAME',
     ADD_NAMES: 'ADD_NAMES',
-    ADD_SPLICE: 'ADD_SPLICE'
+    DELETE_NAME: 'DELETE_NAME'
 }
 
 const initialState = {
     name: '',
     names: [],
-    addSplice: false
+    deleteName: false
 }
 
 export const formReducer = (state = initialState, action) => {
@@ -22,10 +22,10 @@ export const formReducer = (state = initialState, action) => {
                 ...state,
                 names: action.payload
             }
-        case actionType.ADD_SPLICE:
+        case actionType.DELETE_NAME:
             return {
                 ...state,
-                addSplice: action.payload
+                deleteName: action.payload
             }
         default:
             return state

@@ -3,4 +3,5 @@ import thunk from "redux-thunk";
 import {formReducer} from "./reducer/formReducer";
 
 
+
 export const store = createStore(formReducer, compose(applyMiddleware(thunk)))

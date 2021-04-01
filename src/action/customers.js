@@ -1,26 +1,45 @@
-import {store} from "../store";
+import { store } from "../store";
 
-import {actionType} from "../store/reducer/formReducer";
+import { actionType } from "../store/reducer/formReducer";
 
-let name;
-export const handleSelect = e => {
-     name = e.target.value;
-    store.dispatch({type: actionType.SET_NAME, payload: name})
-    console.log('name',name)
-}
-const names = []
+export const handleSelect = (e) => {
+  store.dispatch({ type: actionType.SET_NAME, payload: e.target.value });
+};
 
 export const addNames = () => {
-    console.log('add', name)
-    names.push({name})
-    console.log('tt', names)
-    store.dispatch({type: actionType.ADD_NAMES, payload: names})
-    store.dispatch({type: actionType.SET_NAME, payload: ''})
-}
- export const nameDel =(i)=>{
-    names.splice(i,1)
-    const addSplice = true
-     console.log(names)
-    store.dispatch({type: actionType.DELETE_NAME, payload: addSplice})
-     console.log(names)
-}
+  const { name, names } = store.getState();
+  names.push({ name });
+  console.log("tt", names);
+  store.dispatch({ type: actionType.ADD_NAMES, payload: [...names] });
+  store.dispatch({ type: actionType.SET_NAME, payload: "" });
+};
+export const nameDel = (i) => {
+  const { names } = store.getState();
+  names.splice(i, 1);
+  store.dispatch({ type: actionType.ADD_NAMES, payload: [...names] });
+};
+
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (error) {
+    return undefined;
+  }
+};
+
+export const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+store.subscribe(() => {
+  saveState(store.getState());
+});

@@ -12,13 +12,13 @@ const Form = ({ name }) => {
           name="name"
           type="text"
           variant="outlined"
-          style={{ marginTop: 10, marginLeft: 10 }}
+          style={{ marginTop: 20, marginLeft: 35 }}
           placeholder="Enter name"
           onChange={handleSelect}
           value={name}
         />
         <Button
-          style={{ marginTop: 15, marginLeft: 10 }}
+          style={{ marginTop: 27, marginLeft: 10 }}
           variant="contained"
           size="large"
           color="primary"
